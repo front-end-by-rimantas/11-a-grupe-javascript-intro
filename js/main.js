@@ -80,3 +80,85 @@ console.log( numbers[5][1] );
 
 const alter = numbers[0] - numbers[1] + numbers[2];
 console.log(alter);
+
+
+console.log('-------------------');
+console.log('-------------------');
+console.log('-------------------');
+console.log('KINTAMŲJŲ PALYGINIMAS');
+
+const m = 0;
+
+if ( m > 50 ) {
+    console.log('7 yra daugiau uz 50');
+} else {
+    console.log('tas kitas variantas');
+}
+
+if ( m > 0 ) {
+    console.log('Skaicius teigiamas');
+} else {
+    if ( m < 0 ) {
+        console.log('Skaicius neigiamas');
+    } else {
+        console.log('As esu nulis');
+    }
+}
+
+const akys = 'asdgh';
+
+if ( akys === 'melynos') {
+    console.log('Aha');
+} else {
+    if ( akys === 'zalios' ) {
+        console.log('Jop');
+    } else {
+        if ( akys === 'rudos' ) {
+            console.log('taip, rudos');
+        } else {
+            console.log('a tu turi akis?');
+        }
+    }
+}
+
+if ( akys === 'melynos' ) {
+    console.log('melynos');
+} else if ( akys === 'zalios' ) {
+    console.log('Jop');
+} else if ( akys === 'rudos' ) {
+    console.log('taip, rudos');
+} else {
+    console.log('a tu turi akis?');
+}
+
+switch ( akys ) {
+    case 'melynos':
+        console.log('switch: melynos');
+        break;
+    
+    case 'zalios':
+        console.log('switch: zalios');
+        break;
+    
+    case 'rudos':
+        console.log('switch: rudos');
+        break;
+
+    default:
+        console.log('switch: a tu turi akis?');
+        break;
+}
+
+
+const a1 = 'a';
+const a2 = 'av';
+
+// vartotinos: >, <, ===, >=, <=, !==
+// nevartotinos: ==, !=
+if ( a1 < a2 ) {
+    console.log( true );
+} else {
+    console.log( false );
+}
+
+
