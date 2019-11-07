@@ -410,3 +410,58 @@ console.log( skaitmenuKiekisSkaiciuje( 315, 4587 ) );
 console.log( skaitmenuKiekisSkaiciuje( 0.000000001 ) );
 console.log( skaitmenuKiekisSkaiciuje( 1e6 ) );
 
+
+console.log('-------------------');
+console.log('DIDZIAUSIAS SKAICIUS SARASE');
+
+function didziausiasSkaiciusSarase( list ) {
+    // patikrinimai
+    if ( Array.isArray(list) === false ) {
+        return 'Pateikta netinkamo tipo reikšmė.';
+    }
+    if ( list.length === 0 ) {
+        return 'Pateiktas sąrašas negali būti tuščias.';
+    }
+
+    // logika
+    let didziausias = -Infinity;
+
+    // einame per skaiciu sarasa
+    for ( let i=0; i<list.length; i++ ) {
+        const skaicius = list[i];
+
+        // ar jis apskritai skaicius
+        if ( typeof(skaicius) !== 'number' ||
+             isFinite(skaicius) === false ) {
+            // einame i sekanti cikla, nes cia nera ka veikti
+            continue;
+        }
+        // jeigu, einamasis skaicius didesnis uz zinoma didziausia
+        if ( skaicius > didziausias ) {
+            // didziausias = einamasis skaicius;
+            didziausias = skaicius;
+        }
+    }
+
+    if ( didziausias === -Infinity ) {
+        return 'Tavo sarase taip ir nebuvo skaiciu :(';
+    }
+
+    return didziausias;
+}
+
+console.log( didziausiasSkaiciusSarase( 'pomidoras' ) );
+console.log( didziausiasSkaiciusSarase( {} ) );
+console.log( didziausiasSkaiciusSarase( [] ) );
+console.log( didziausiasSkaiciusSarase( [ 'a', 'b', 'c' ] ) );
+
+console.log( didziausiasSkaiciusSarase( [ 1 ] ) );
+console.log( didziausiasSkaiciusSarase( [ 1, 2, 3 ] ) );
+console.log( didziausiasSkaiciusSarase( [ -5, 78, 14, 0, 18 ] ) );
+console.log( didziausiasSkaiciusSarase( [ 69, 69, 69, 69, 66 ] ) );
+console.log( didziausiasSkaiciusSarase( [ -1, -2, -3, -4, -5, -6, -7, -8 ] ) );
+console.log( didziausiasSkaiciusSarase( [ 1, 'asd', 4 ] ) );
+console.log( didziausiasSkaiciusSarase( [ 1, 2, 'asd' ] ) );
+console.log( didziausiasSkaiciusSarase( [ 'asd', 2, 5 ] ) );
+console.log( didziausiasSkaiciusSarase( [ 'asd', 'asd', 'asd', 'asd', 2, 7 ] ) );
+console.log( didziausiasSkaiciusSarase( [ 'asd', true, false, NaN, -Infinity, Infinity, 2, 8 ] ) );
