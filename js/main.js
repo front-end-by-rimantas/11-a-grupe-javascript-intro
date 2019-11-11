@@ -477,21 +477,30 @@ function isrinktiRaides( text, step ) {
     if ( typeof(step) !== 'number' ) {
         return 'Antras parametras turi buti skaicius';
     }
+    if ( step === 0 && text.length === 1 ) {
+        return text;
+    }
     if ( step === 0 ) {
         return 'Zingsnis negali buti nulinis';
     }
     if ( step % 1 !== 0 ) {
         return 'Duok sveika skaiciu'
     }
-    if ( step > text.length ) {
+    if ( Math.abs(step) > text.length ) {
         return 'Tekstas per trumpas, kad isrinkti raides';
     }
 
     let ats = '';
 
-    for ( let i=step-1; i<text.length; i=i+step ) {
-        // ats = ats + text[i];
-        ats += text[i];
+    if ( step > 0 ) {
+        for ( let i=step-1; i<text.length; i=i+step ) {
+            // ats = ats + text[i];
+            ats += text[i];
+        }
+    } else {
+        for ( let i=text.length+step; i>=0; i=i+step ) {
+            ats += text[i];
+        }
     }
 
     return ats;
@@ -502,9 +511,61 @@ console.log( isrinktiRaides( 'asdff', '2' ) );
 console.log( isrinktiRaides( 'abc', 0 ) );
 console.log( isrinktiRaides( 'abc', 4 ) );
 console.log( isrinktiRaides( 'abcdefghijkl', 3.2 ) );
+console.log( isrinktiRaides( 'abcdef', -8 ) );
 
+console.log( isrinktiRaides( 'a', 0 ) );
 console.log( isrinktiRaides( 'abcdefg', 2 ) );
 console.log( isrinktiRaides( 'abcdefghijkl', 3 ) );
 
-// console.log( isrinktiRaides( 'abcdef', -2 ) );
-// console.log( isrinktiRaides( 'abcdef', -8 ) );
+console.log( isrinktiRaides( 'abcdef', -2 ) );
+
+console.log('-------------------');
+console.log('DALYBA');
+
+function dalyba(a, b) {
+    let errors = [];
+    // ( isFinite(Infiniy) === false )
+    // ( false === false )
+    // ( true )
+    if ( isFinite(a) === false ||
+         Array.isArray(a) ||
+         typeof(a) !== 'number' ) {
+        errors.push('Pirmas ne validus skaicius');
+        // return 'Pirmas ne skaicius';
+    }
+    // ( !isFinite(Infiniy) )
+    // ( !false )
+    // ( true )
+    if ( !isFinite(b) ||
+         Array.isArray(b) ||
+         typeof(b) !== 'number' ) {
+        errors.push('Antras ne validus skaicius');
+        // return 'Antras ne skaicius';
+    }
+    if ( b === 0 ) {
+        errors.push('Dalyba is nulio negalima');
+        // return 'Dalyba is nulio negalima';
+    }
+
+    if ( errors.length > 0 ) {
+        return errors;
+    }
+    return a / b;
+}
+
+console.table( dalyba('assdsf', 0) );
+console.log( dalyba(542, 0) );
+console.log( dalyba(NaN, 0) );
+console.log( dalyba(Infinity, 1) );
+console.log( dalyba([], 451) );
+console.log( dalyba(52, true) );
+console.log( dalyba(52, false) );
+console.log( dalyba(52, null) );
+console.log( dalyba(null, 85) );;
+console.log( dalyba(52, undefined) );
+console.table( dalyba(undefined, 85) );
+
+console.log( dalyba(8, 2) );
+console.log( dalyba(-8, 2.5) );
+console.log( dalyba(8, -2) );
+console.table( dalyba(-8, -2) );
